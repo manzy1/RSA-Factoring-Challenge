@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+""" Factors """
+import math
+from sys import argv
+
+
+def factor(my_number, test_num):
+    """ Factor function"""
+
+    print("{}={}*{}".format(my_number, (my_number // test_num), test_num))
+
+
+with open(argv[1], mode="r", encoding="UTF-8") as f:
+    for line in f:
+        my_number = int(line)
+        if my_number % 2 == 0:
+            factor(my_number, 2)
+        else:
+            max_my_number_to_test = math.floor(math.sqrt(my_number))
+            for test_num in range(3, max_my_number_to_test + 1, 2):
+                if my_number % test_num == 0:
+                    factor(my_number, test_num)
+                    break
